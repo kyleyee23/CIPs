@@ -32,7 +32,6 @@ vector<double> read_dat(string file_name, int index, bool do_normalizing) {
 
     string line;
     vector<double> data;
-    int flag = 0;
     while(getline(file, line)){
         if (line.at(0) == '#') {
             getline(file,line);
@@ -126,8 +125,6 @@ double KTT(int L) {
 }
 
 int main() {
-    int l = 0;
-
     GlobalData::CltildeTT = read_dat("../../Dropbox/CIPs MCMC/cmb_files/Cl_no_lensing_scalCls.dat", TT, 1);
     GlobalData::ClTT = read_dat("../../Dropbox/CIPs MCMC/cmb_files/Cl_lensing_scalCls.dat", TT, 1);
     GlobalData::ClTTv2 = read_dat("../../Dropbox/CIPs MCMC/cmb_files/clXX.dat", TT, 1);
