@@ -13,6 +13,7 @@ using namespace std;
 #define pi      3.14159265358979323846  /* pi */
 #define ellmax  200
 #define TT      1
+#define gamma   1
 
 namespace GlobalData
 {
@@ -65,12 +66,15 @@ double F(int l1, int L, int l2) {
         return 0;
     }
 }
+
 double fTT(int l1, int L, int l2) {
     return GlobalData::CltildeTT.at(l1 - 2)*F(l2, L, l1) + GlobalData::CltildeTT.at(l2 - 2)*F(l1, L, l2);
 }
+
 double gTT(int l1, int L, int l2) {
     return fTT(l1, L, l2)/(2*GlobalData::ClTT.at(l1 - 2)*GlobalData::ClTT.at(l2 - 2));
 }
+
 double ATT(int L) {
     double sum = 0.0;
     for (int l1 = 2; l1 <= ellmax; l1++) {
@@ -80,6 +84,7 @@ double ATT(int L) {
     }
     return (L*(L + 1)*(2*L + 1))/sum;
 }
+
 double hTT(int l1, int L, int l2) {
     if ((abs(l1 - l2) <= L) && (L <= l1 + l2)) {
         double return_val = WignerSymbols::wigner3j((double)l1,(double)L,(double)l2,0,0,0);
@@ -100,6 +105,24 @@ double QTT(int L) {
         }
     }
     return sum1/sum2;
+}
+
+double kappaTT(int l1, int l2) {
+    int sum = 0;
+    for (int L = 0; L < ellmax; L++) {
+        sum += (2*L + 1)/(L*L) * hTT(l1,L,l2)*hTT(l1,L,l2);
+    }
+    return gamma*sum;
+}
+
+double KTT(int L) {
+    int sum = 0;
+    for (int l1 = 0; l1 < ellmax; l1++) {
+        for (int l2 = 0; l2 < ellmax; l2++) {
+            sum += gTT(l1,L,l2)*gTT(l1,L,l2)*kappaTT(l1, l2);
+        }
+    }
+    return ATT(L)*ATT(L)/(L*(L+1)*(2*L+1)) * sum;
 }
 
 int main() {

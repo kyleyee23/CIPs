@@ -12,4 +12,4 @@ namespace GlobalData
     extern std::vector<double> Clff;
 }
 
-#endif GLOBALDATA_H
+#endif //GLOBALDATA_H
