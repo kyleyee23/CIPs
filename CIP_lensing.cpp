@@ -57,13 +57,13 @@ vector<double> read_dat(string file_name, int index, bool do_normalizing) {
 }
 
 double F(int l1, int L, int l2) {
-    if ((abs(l1 - l2) <= L) && (L <= l1 + l2)) {
+    //if ((abs(l1 - l2) <= L) && (L <= l1 + l2)) {
         double return_val = WignerSymbols::wigner3j((double)l1,(double)L,(double)l2,0,0,0);
         return (L*(L + 1) + l2*(l2 + 1) - l1*(l1 + 1))*sqrt(((2*L + 1)*(2*l1 + 1)*(2*l2 + 1))/(16*pi))* return_val;
-    }
-    else {
+    //}
+    /*else {
         return 0;
-    }
+    }*/
 }
 
 double fTT(int l1, int L, int l2) {
@@ -85,13 +85,13 @@ double ATT(int L) {
 }
 
 double hTT(int l1, int L, int l2) {
-    if ((abs(l1 - l2) <= L) && (L <= l1 + l2)) {
+    //if ((abs(l1 - l2) <= L) && (L <= l1 + l2)) {
         double return_val = WignerSymbols::wigner3j((double)l1,(double)L,(double)l2,0,0,0);
         return sqrt(((2*L + 1)*(2*l1 + 1)*(2*l2 + 1))/(4/pi))*(GlobalData::ClTdT.at(l1 - 2) + GlobalData::ClTdT.at(l2 - 2))* return_val;
-    }
-    else {
+    //}
+    /*else {
         return 0;
-    }
+    }*/
 }
 
 double QTT(int L) {
@@ -132,10 +132,12 @@ int main() {
     GlobalData::Clff = read_dat("../../Dropbox/CIPs MCMC/cmb_files/Cl_lensing_lenspotentialCls.dat", 5, 0);
 
     vector<double> result;
-    for (int i = 1; i < 15; i++) {
-        result.push_back(QTT(i)/pi);
-        cout << result.at(i-1) << endl;
-    }
+    //for (int i = 1; i < 15; i++) {
+        result.push_back(QTT(100)/pi);
+        cout << result.at(0) << endl;
+    //}
+
+    //cout << WignerSymbols::wigner3j(1,100,98, 0,0,0)<<endl;
 
     return 0;
 }
