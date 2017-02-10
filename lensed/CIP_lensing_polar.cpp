@@ -15,6 +15,15 @@ int main() {
     GlobalData::ClTdE = read_dat("../cmb_files/Cl_X_dX.dat", 2, 1);
     GlobalData::ClEdT = read_dat("../cmb_files/Cl_X_dX.dat", 3, 1);
 
+    GlobalData::CltildeTB = read_dat("../cmb_files/Cl_no_lensing_scalCls.dat", 4, 1);
+    GlobalData::ClTB = read_dat("../cmb_files/Cl_lensing_scalCls.dat", 3, 1);
+
+    GlobalData::CltildeBB = read_dat("../cmb_files/Cl_no_lensing_scalCls.dat", 3, 1);
+    GlobalData::ClBB = read_dat("../cmb_files/Cl_lensing_scalCls.dat", 4, 1);
+
+    GlobalData::CltildeBE = read_dat("../cmb_files/Cl_no_lensing_scalCls.dat", 3, 1);
+    GlobalData::ClBE = read_dat("../cmb_files/Cl_lensing_scalCls.dat", 4, 1);
+
     double thetaFWHM=7.1/60;
     double sigmab= 0.00741173*thetaFWHM;
     double fsurv = 0.65;

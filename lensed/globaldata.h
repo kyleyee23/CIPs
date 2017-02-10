@@ -19,6 +19,20 @@ namespace GlobalData
     extern std::vector<double> ClTE;
     extern std::vector<double> ClTdE;
     extern std::vector<double> ClEdT;
+
+    extern std::vector<double> CltildeTB;
+    extern std::vector<double> ClTB;
+    extern std::vector<double> ClTdB;
+    extern std::vector<double> ClBdT;
+
+    extern std::vector<double> CltildeBB;
+    extern std::vector<double> ClBB;
+    extern std::vector<double> ClBdB;
+
+    extern std::vector<double> CltildeEB;
+    extern std::vector<double> ClEB;
+    extern std::vector<double> ClEdB;
+    extern std::vector<double> ClBdE;
 }
 
 #endif //GLOBALDATA_H
